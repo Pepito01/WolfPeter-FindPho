@@ -39,13 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
                 email = editTextEmail.getText().toString().trim();
                 password = editTextPassword.getText().toString();
                 if(username.isEmpty() || username.length() < 5 || username.length() > 20) {
-                    Toast.makeText(RegisterActivity.this, "A felhasználónév minimum 5, maximum 20 karakterből állhat!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "The username can consist of a minimum of 5 and a maximum of 20 characters!", Toast.LENGTH_SHORT).show();
                 }
                 else if(email.isEmpty() || email.length()  > 255) {
-                    Toast.makeText(RegisterActivity.this, "Az email nem lehet üres, maximum 255 karakterből állhat!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "The email cannot be empty, it can be up to 255 characters long!", Toast.LENGTH_SHORT).show();
                 }
                 else if(password.isEmpty() || password.length() < 8) {
-                    Toast.makeText(RegisterActivity.this, "A jelszónak minimum 8 karakterből kell állnia!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "The password must be at least 8 characters long!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     new RequestTaskRegister().execute();
@@ -83,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
             super.onPostExecute(response);
             Gson converter = new Gson();
             if (response == null){
-                Toast.makeText(RegisterActivity.this, "Hiba történt a regisztráció során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "\n" +
+                        "An error occurred during registration", Toast.LENGTH_SHORT).show();
             }
             else if(response.getResponseCode() >= 400) {
                 try {
@@ -95,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             else {
-                Toast.makeText(RegisterActivity.this, "Sikeres regisztráció", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                 finish();
             }
 

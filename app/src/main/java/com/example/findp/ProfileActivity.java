@@ -63,17 +63,17 @@ public class ProfileActivity extends AppCompatActivity {
                     editTextEditEmail.setVisibility(View.VISIBLE);
                     textViewUsername.setVisibility(View.GONE);
                     textViewEmail.setVisibility(View.GONE);
-                    buttonProfileCancel.setText("Mégse");
-                    buttonProfileEdit.setText("Mentés");
+                    buttonProfileCancel.setText("Cancel");
+                    buttonProfileEdit.setText("Save");
                 }
                 else {
                     username = editTextEditUsername.getText().toString().trim();
                     email = editTextEditEmail.getText().toString().trim();
                     if(username.isEmpty() || username.length() < 5 || username.length() > 20) {
-                        Toast.makeText(ProfileActivity.this, "A felhasználónév minimum 5, maximum 20 karakterből állhat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "The username can be a minimum of 5 and a maximum of 20 characters", Toast.LENGTH_SHORT).show();
                     }
                     else if(email.isEmpty() || email.length()  > 255) {
-                        Toast.makeText(ProfileActivity.this, "Az email nem lehet üres, maximum 255 karakterből állhat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Email cannot be empty, up to 255 characters", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         new RequestTaskEditUser().execute();
@@ -110,7 +110,7 @@ public class ProfileActivity extends AppCompatActivity {
             super.onPostExecute(response);
             Gson converter = new Gson();
             if (response == null){
-                Toast.makeText(ProfileActivity.this, "Hiba történt a felhasználó betöltése során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "An error occurred while loading the user", Toast.LENGTH_SHORT).show();
             }
             else if(response.getResponseCode() >= 400) {
                 try {
@@ -154,7 +154,8 @@ public class ProfileActivity extends AppCompatActivity {
             super.onPostExecute(response);
             Gson converter = new Gson();
             if (response == null){
-                Toast.makeText(ProfileActivity.this, "Hiba történt a módosítás során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "\n" +
+                        "An error occurred while editing", Toast.LENGTH_SHORT).show();
             }
             else if(response.getContent().contains("Duplicate entry")) {
                 Toast.makeText(ProfileActivity.this, "The username has already been taken.", Toast.LENGTH_SHORT).show();
@@ -169,7 +170,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             }
             else {
-                Toast.makeText(ProfileActivity.this, "Sikeres módosítás", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "Successful registration", Toast.LENGTH_SHORT).show();
                 finish();
             }
 

@@ -1,7 +1,6 @@
 package com.example.findp;
 
 public class Response {
-
     private int responseCode;
     private String content;
 
@@ -14,15 +13,8 @@ public class Response {
         return responseCode;
     }
 
-    public void setResponseCode(int responseCode) {
-        this.responseCode = responseCode;
-    }
-
     public String getContent() {
         return content;
     }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
+

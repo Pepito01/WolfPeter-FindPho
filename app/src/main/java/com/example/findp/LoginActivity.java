@@ -43,10 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                 username = editTextUsername.getText().toString().trim();
                 password = editTextPassword.getText().toString();
                 if(username.isEmpty() || username.length() < 5 || username.length() > 20) {
-                    Toast.makeText(LoginActivity.this, "A felhasználónév minimum 5, maximum 20 karakterből állhat!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "The username can consist of a minimum of 5 and a maximum of 20 characters!", Toast.LENGTH_SHORT).show();
                 }
                 else if(password.isEmpty() || password.length() < 8) {
-                    Toast.makeText(LoginActivity.this, "A jelszónak minimum 8 karakterből kell állnia!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "The password must be at least 8 characters long!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     new RequestTaskLogin().execute();
@@ -85,14 +85,14 @@ public class LoginActivity extends AppCompatActivity {
             super.onPostExecute(response);
             if (response == null) {
 
-                Toast.makeText(LoginActivity.this, "Hiba történt a bejelentkezés során", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "An error occurred while logging in", Toast.LENGTH_SHORT).show();
 
             }else if (response.getResponseCode() >= 400){
                 Toast.makeText(LoginActivity.this, response.getContent(), Toast.LENGTH_SHORT).show();
             }
 
             else {
-                Toast.makeText(LoginActivity.this, "Sikeres bejelentkezés", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                 Gson gson = new Gson();
                 Token token = gson.fromJson(response.getContent(), Token.class);
                 SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.findp.ProfileActivity;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -98,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("token", token.getToken());
                 editor.apply();
-                Intent intent = new Intent(LoginActivity.this, PictureActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 finish();
 
